@@ -17,7 +17,6 @@ class SignUpActivity : AppCompatActivity() {
 
     private val db = FirebaseFirestore.getInstance()
 
-
     private  lateinit var btn_signUp: Button
     private  lateinit var ed_txt_userName: EditText
     private  lateinit var ed_txt_email: EditText
@@ -128,14 +127,15 @@ class SignUpActivity : AppCompatActivity() {
         db.collection("users")
             .document(email) //Será la clave del documento.
             .set(user).addOnSuccessListener {
-                Toast.makeText(this, "Almacenado", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.almacenado), Toast.LENGTH_SHORT).show()
             }.addOnFailureListener{
-                Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.ocurridoError), Toast.LENGTH_SHORT).show()
             }
-
-
     }
 
+    /*
+    Ir al activity principal
+     */
     private fun irHome(email:String){
         val homeIntent = Intent(this, HomeActivity::class.java).apply {
             putExtra("email",email)
@@ -148,9 +148,9 @@ class SignUpActivity : AppCompatActivity() {
      */
     private fun showAlert(){
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Error")
-        builder.setMessage("Se ha producido un error autenticando al usuairo")
-        builder.setPositiveButton("Aceptar",null)
+        builder.setTitle(getString(R.string.ERROR))
+        builder.setMessage(getString(R.string.ocurridoErrorAutenticacion))
+        builder.setPositiveButton(getString(R.string.aceptar),null)
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
