@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/Password"
             android:inputType="textPassword"
             android:minHeight="48dp"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -64,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Registrar" />
+                android:text="@string/SignUp" />
 
             <Button
                 android:id="@+id/btLogin"
@@ -72,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Login" />
+                android:text="@string/Login" />
 
         </LinearLayout>
     </LinearLayout>
@@ -95,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Login con Google"
+            android:text="@string/LoginGoogle"
             tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
 

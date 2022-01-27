@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">SiempreLlegasTarde</string>
+    <string name="email">Email</string>
+    <string name="UserName">UaserName</string>
+    <string name="Password">Password</string>
+    <string name="Telefono">Telefono</string>
+    <string name="Login">Login</string>
+    <string name="SignUp">SignUp</string>
+    <string name="LoginGoogle">Login con Google</string>
+    <string name="cerrarSesion">Cerrar Sesion</string>
 </resources>
