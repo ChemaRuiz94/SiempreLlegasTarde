@@ -1,5 +1,6 @@
 package com.chema.siemprellegastarde.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -25,6 +26,10 @@ class LoginActivity : AppCompatActivity() {
         txt_email = findViewById(R.id.edEmail)
         txt_pwd = findViewById(R.id.edPass)
 
+        btn_signUp.setOnClickListener{
+            var intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }
