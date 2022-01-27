@@ -17,4 +17,7 @@
     <string name="almacenado">Almacenado</string>
     <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="edicionEventos">Edicion de Eventos</string>
+    <string name="asistentesEvento">Asistentes al evento</string>
+    <string name="consultaEventos">Consulta de Eventos</string>
 </resources>
