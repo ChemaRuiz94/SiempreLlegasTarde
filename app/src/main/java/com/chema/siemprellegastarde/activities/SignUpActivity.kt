@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.chema.siemprellegastarde.ProviderType
+import com.chema.siemprellegastarde.utils.ProviderType
 import com.chema.siemprellegastarde.R
 import com.chema.siemprellegastarde.utils.Constantes
 import com.google.firebase.auth.FirebaseAuth

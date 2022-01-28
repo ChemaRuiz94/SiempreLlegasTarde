@@ -1,18 +1,25 @@
 package com.chema.siemprellegastarde.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.chema.siemprellegastarde.ProviderType
+import com.chema.siemprellegastarde.utils.ProviderType
 import com.chema.siemprellegastarde.R
 import com.chema.siemprellegastarde.model.User
 import com.chema.siemprellegastarde.rv.AdapterRvUsers
 import com.chema.siemprellegastarde.utils.Constantes
+import com.chema.siemprellegastarde.utils.DatePickerFragment
+import com.chema.siemprellegastarde.utils.TimePickerFragment
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_edicionn.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -28,11 +35,19 @@ class EdicionnActivity : AppCompatActivity() {
     var usuarios : ArrayList<User> = ArrayList<User>()
     private lateinit var miAdapter: AdapterRvUsers
 
+    private lateinit var btn_fecha: Button
+    private lateinit var ed_txt_fecha: EditText
+    private lateinit var btn_hora: Button
+    private lateinit var ed_txt_hora: EditText
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edicionn)
 
-
+        btn_fecha = findViewById(R.id.btn_fecha)
+        ed_txt_fecha = findViewById(R.id.ed_txt_fecha)
+        btn_hora = findViewById(R.id.btn_hora)
+        ed_txt_hora = findViewById(R.id.ed_txt_hora)
 
         runBlocking {
             val job : Job = launch(context = Dispatchers.Default) {
@@ -44,6 +59,24 @@ class EdicionnActivity : AppCompatActivity() {
         }
 
         cargarRV()
+
+        btn_fecha.setOnClickListener{
+            val newFragment = DatePickerFragment(ed_txt_fecha)
+            newFragment.show(supportFragmentManager, "datePicker")
+        }
+
+        btn_hora.setOnClickListener{
+
+            val newFragment = TimePickerFragment(ed_txt_hora)
+            newFragment.show(supportFragmentManager, "timePicker")
+        }
+        btn_ubicacion.setOnClickListener{
+
+            val mapIntent = Intent(this, MapsNewEventoActivity::class.java).apply {
+                //putExtra("email",email)
+            }
+            startActivity(mapIntent)
+        }
     }
 
     fun cargarRV(){
@@ -75,7 +108,7 @@ class EdicionnActivity : AppCompatActivity() {
 
                 var prov = ProviderType.BASIC
 
-                if(!dc.document.get("provider").toString().equals("BASIC")){prov=ProviderType.GOOGLE}
+                if(!dc.document.get("provider").toString().equals("BASIC")){prov= ProviderType.GOOGLE}
 
                 var al = User(
                     dc.document.get("email").toString(),

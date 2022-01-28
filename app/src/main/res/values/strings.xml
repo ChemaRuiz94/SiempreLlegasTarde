@@ -20,4 +20,8 @@
     <string name="edicionEventos">Edicion de Eventos</string>
     <string name="asistentesEvento">Asistentes al evento</string>
     <string name="consultaEventos">Consulta de Eventos</string>
+    <string name="asiste">Asiste</string>
+    <string name="noAsiste">No asiste</string>
+    <string name="nuevoEvento">Nuevo Evento</string>
+    <string name="title_activity_maps_new_evento">MapsNewEventoActivity</string>
 </resources>

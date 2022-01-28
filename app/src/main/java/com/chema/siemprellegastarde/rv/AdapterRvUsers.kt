@@ -31,11 +31,24 @@ class AdapterRvUsers (
         //holder?.item.text = this.valores!![position].toString()
         var usuario: User = usuarios[position]
         holder.nombre.text = usuario.userName
+        holder.img_correcto.setImageResource(R.drawable.ic_baseline_check_24_no)
 
 
 
         holder.itemView.setOnClickListener {
-            Toast.makeText(context, "${usuario.userName}", Toast.LENGTH_SHORT).show()
+            change_tick(holder)
+            //Toast.makeText(context, "${usuario.userName} asiste", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
+    fun change_tick(holder: ViewHolder){
+        if (holder.txt_asiste.text.equals("Asiste")){
+            holder.img_correcto.setImageResource(R.drawable.ic_baseline_check_24_no)
+            holder.txt_asiste.text = "No asiste"
+        }else{
+            holder.img_correcto.setImageResource(R.drawable.ic_baseline_check_24_yes)
+            holder.txt_asiste.text = "Asiste"
         }
     }
 
@@ -44,6 +57,7 @@ class AdapterRvUsers (
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         val nombre = view.findViewById<TextView>(R.id.txt_userName_item)
+        val txt_asiste = view.findViewById<TextView>(R.id.txt_asiste_item_user)
         val img_correcto = view.findViewById<ImageView>(R.id.img_item_user_correcto)
 
     }
