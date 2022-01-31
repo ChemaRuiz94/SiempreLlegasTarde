@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.chema.siemprellegastarde.R
@@ -18,12 +19,17 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 //import com.chema.siemprellegastarde.activities.databinding.ActivityMapsNewEventoBinding
 import com.chema.siemprellegastarde.databinding.ActivityMapsNewEventoBinding
+import com.chema.siemprellegastarde.utils.VaraiblesComunes
+import com.google.android.gms.maps.model.Marker
 
-class MapsNewEventoActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsNewEventoActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnMarkerClickListener{
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsNewEventoBinding
     private val LOCATION_REQUEST_CODE: Int = 0
+    private var ubicacion_seleccionada: LatLng? = null
+    private var tituloEvento: String = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +57,8 @@ class MapsNewEventoActivity : AppCompatActivity(), OnMapReadyCallback {
 
         mMap.mapType = GoogleMap.MAP_TYPE_HYBRID
         //mMap.setOnMyLocationButtonClickListener {}
+        mMap.setOnMapClickListener(this)
+        mMap.setOnMarkerClickListener(this)
         enableMyLocation()
 
         /*
@@ -99,4 +107,26 @@ class MapsNewEventoActivity : AppCompatActivity(), OnMapReadyCallback {
                 LOCATION_REQUEST_CODE)
         }
     }
+
+    override fun onMapClick(p0: LatLng)  {
+        //mMap.clear()
+        mMap.addMarker(MarkerOptions().position(p0!!).title("${tituloEvento}"))
+
+    }
+
+    override fun onMarkerClick(p0: Marker): Boolean {
+
+        AlertDialog.Builder(this).setTitle("¿Seleccionar esta como ubicacion para el evento o eliminar marcador?")
+            .setPositiveButton("Eliminar Marcador") { view, _ ->
+                //elimina marcador
+                p0.remove()
+                view.dismiss()
+            }.setNegativeButton("Seleccionar Ubicacion") { view, _ ->
+                VaraiblesComunes.marcadorActual = p0.position
+                finish()
+                view.dismiss()
+            }.create().show()
+        return false
+    }
+
 }
