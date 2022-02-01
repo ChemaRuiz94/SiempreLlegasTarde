@@ -3,29 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.ListadoEdicionEventosActivity">
+    android:layout_height="wrap_content"
+    >
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_eventos"
-        android:layout_width="357dp"
-        android:layout_height="521dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/flt_btn_new_evento"
+    <TextView
+        android:id="@+id/nombreEvento_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:text="@string/nuevoEvento"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.878"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fechaEvento_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:text="@string/fecha"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.745"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.945"
-        app:srcCompat="@android:drawable/ic_dialog_map" />
+        app:layout_constraintVertical_bias="0.8" />
 </androidx.constraintlayout.widget.ConstraintLayout>

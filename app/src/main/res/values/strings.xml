@@ -23,5 +23,6 @@
     <string name="asiste">Asiste</string>
     <string name="noAsiste">No asiste</string>
     <string name="nuevoEvento">Nuevo Evento</string>
+    <string name="fecha">Fecha</string>
     <string name="title_activity_maps_new_evento">MapsNewEventoActivity</string>
 </resources>

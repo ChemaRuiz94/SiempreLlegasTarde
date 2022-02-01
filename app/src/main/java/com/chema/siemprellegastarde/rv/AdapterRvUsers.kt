@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.chema.siemprellegastarde.R
 import com.chema.siemprellegastarde.model.User
+import com.chema.siemprellegastarde.utils.VaraiblesComunes
 
 class AdapterRvUsers (
     private val context: AppCompatActivity,
@@ -36,19 +37,22 @@ class AdapterRvUsers (
 
 
         holder.itemView.setOnClickListener {
-            change_tick(holder)
-            //Toast.makeText(context, "${usuario.userName} asiste", Toast.LENGTH_SHORT).show()
+            change_tick(holder,position)
+            //Toast.makeText(context, "${usuario.userName} añadido", Toast.LENGTH_SHORT).show()
         }
 
     }
 
-    fun change_tick(holder: ViewHolder){
+    fun change_tick(holder: ViewHolder, position: Int){
         if (holder.txt_asiste.text.equals("Asiste")){
             holder.img_correcto.setImageResource(R.drawable.ic_baseline_check_24_no)
             holder.txt_asiste.text = "No asiste"
+            VaraiblesComunes.usuariosEventoActual.remove(usuarios[position].email)
         }else{
             holder.img_correcto.setImageResource(R.drawable.ic_baseline_check_24_yes)
             holder.txt_asiste.text = "Asiste"
+            VaraiblesComunes.usuariosEventoActual.add(usuarios[position].email)
+
         }
     }
 

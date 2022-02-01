@@ -22,14 +22,13 @@ class HomeActivity : AppCompatActivity() {
         email = (bundle?.getString("email"))
 
         btn_edicion.setOnClickListener{
-            val editIntent = Intent(this, EdicionnActivity::class.java).apply {
-                //putExtra("email",email)
-            }
+            val editIntent = Intent(this, ListadoEdicionEventosActivity::class.java)
             startActivity(editIntent)
         }
 
         btn_consulta.setOnClickListener{
-
+            val consulIntent = Intent(this, ListaEventosConsultaActivity::class.java)
+            startActivity(consulIntent)
         }
     }
 }

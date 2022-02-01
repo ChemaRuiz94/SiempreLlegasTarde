@@ -1,16 +1,14 @@
 package com.chema.siemprellegastarde.activities
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chema.siemprellegastarde.R
 import com.chema.siemprellegastarde.model.Evento
-import com.chema.siemprellegastarde.rv.AdapterRvEventos
+import com.chema.siemprellegastarde.rv.AdapterRvEventosConsulta
 import com.chema.siemprellegastarde.utils.Constantes
 import com.chema.siemprellegastarde.utils.ProviderType
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
@@ -22,22 +20,17 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
 
-class ListadoEdicionEventosActivity : AppCompatActivity() {
+class ListaEventosConsultaActivity : AppCompatActivity() {
 
     private val db = Firebase.firestore
 
     private lateinit var rv : RecyclerView
     var eventos : ArrayList<Evento> = ArrayList<Evento>()
-    private lateinit var miAdapter: AdapterRvEventos
-
-
-    private lateinit var flt_btn_new_evento : FloatingActionButton
+    private lateinit var miAdapter: AdapterRvEventosConsulta
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_listado_edicion_eventos)
-
-        flt_btn_new_evento = findViewById(R.id.flt_btn_new_evento)
+        setContentView(R.layout.activity_lista_eventos_consulta)
 
         runBlocking {
             val job : Job = launch(context = Dispatchers.Default) {
@@ -49,19 +42,14 @@ class ListadoEdicionEventosActivity : AppCompatActivity() {
         }
 
         cargarRV()
-
-        flt_btn_new_evento.setOnClickListener{
-            val edicionIntent = Intent(this, EdicionnActivity::class.java)
-            startActivity(edicionIntent)
-        }
     }
 
     private fun cargarRV(){
 
-        rv = findViewById(R.id.rv_eventos)
+        rv = findViewById(R.id.rv_eventos_consulta)
         rv.setHasFixedSize(true)
         rv.layoutManager = LinearLayoutManager(this)
-        miAdapter = AdapterRvEventos(this, eventos)
+        miAdapter = AdapterRvEventosConsulta(this, eventos)
         rv.adapter = miAdapter
     }
 

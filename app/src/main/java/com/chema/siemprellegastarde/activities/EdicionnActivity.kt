@@ -64,8 +64,9 @@ class EdicionnActivity : AppCompatActivity() {
         ed_txt_titulo_evento = findViewById(R.id.ed_txt_titulo_evento)
 
 
-        var user = User("che@che.com","Chema",666745101)
-        usuarios.add(user)
+        //var user = User("che@che.com","Chema",666745101)
+        VaraiblesComunes.usuariosEventoActual.clear()
+        //VaraiblesComunes.usuariosEventoActual.add("che@che.com")
 
 
 
@@ -180,12 +181,12 @@ class EdicionnActivity : AppCompatActivity() {
             "fecha" to ed_txt_fecha.text.toString().trim(),
             "hora" to ed_txt_hora.text.toString().trim(),
             "ubicacion" to ed_txt_ubicacion.text.toString().trim(),
-            "emailAsistentes" to usuarios
+            "emailAsistentes" to VaraiblesComunes.usuariosEventoActual
         )
         var id_evento = "${ed_txt_titulo_evento.text.toString()}"
-        var time = Timestamp(System.currentTimeMillis())
-        val rnds = (0..100).random()
-        id_evento += "_id${time}${rnds} "
+        //var time = Timestamp(System.currentTimeMillis())
+        //val rnds = (0..100).random()
+        //id_evento += "_id${time}${rnds} "
 
         db.collection("${Constantes.collectionEvents}")
             .document(id_evento) //Será la clave del documento.
@@ -219,7 +220,7 @@ class EdicionnActivity : AppCompatActivity() {
             Toast.makeText(this,"Seleccione una ubicacion", Toast.LENGTH_SHORT).show()
         }
 
-        if(usuarios.size<0){
+        if(VaraiblesComunes.usuariosEventoActual.size<0){
             correcto = false
             Toast.makeText(this,"Añade por lo menos un invitado", Toast.LENGTH_SHORT).show()
         }
