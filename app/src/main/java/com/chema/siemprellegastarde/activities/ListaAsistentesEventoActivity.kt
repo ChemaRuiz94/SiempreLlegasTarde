@@ -2,6 +2,7 @@ package com.chema.siemprellegastarde.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -37,20 +38,26 @@ class ListaAsistentesEventoActivity : AppCompatActivity() {
 
         val bundle:Bundle? = intent.extras
         nombreEvento = (bundle?.getString("nombreEvento"))
+        Log.e("preuba1",nombreEvento.toString())
 
 
         runBlocking {
+            Log.e("preuba1","Prueba1")
             val job : Job = launch(context = Dispatchers.Default) {
                 val datos : QuerySnapshot = getDataFromFireStore() as QuerySnapshot //Obtenermos la colección
+                Log.e("preuba1",datos.toString())
                 obtenerDatos(datos as QuerySnapshot?)  //'Destripamos' la colección y la metemos en nuestro ArrayList
             }
+            Log.e("preuba1",job.toString())
             //Con este método el hilo principal de onCreate se espera a que la función acabe y devuelva la colección con los datos.
             job.join() //Esperamos a que el método acabe: https://dzone.com/articles/waiting-for-coroutines
         }
 
         runBlocking {
+            Log.e("preuba2","Prueba2")
             val job2 : Job = launch(context = Dispatchers.Default) {
                 val datos2 : QuerySnapshot = getDataFromFireStore2() as QuerySnapshot //Obtenermos la colección
+                Log.e("preuba1",datos2.toString())
                 obtenerDatos2(datos2 as QuerySnapshot?)  //'Destripamos' la colección y la metemos en nuestro ArrayList
             }
             //Con este método el hilo principal de onCreate se espera a que la función acabe y devuelva la colección con los datos.
@@ -73,6 +80,7 @@ class ListaAsistentesEventoActivity : AppCompatActivity() {
     suspend fun getDataFromFireStore()  : QuerySnapshot? {
         return try{
             val data = db.collection("${Constantes.collectionEvents}")
+                .whereEqualTo("nombreEvento","${nombreEvento}")
                 .get()
                 .await()
             data
@@ -94,11 +102,25 @@ class ListaAsistentesEventoActivity : AppCompatActivity() {
 
     private fun obtenerDatos(datos: QuerySnapshot?) {
         evento = null
+
+        for(dc: DocumentChange in datos?.documentChanges!!){
+            if (dc.type == DocumentChange.Type.ADDED){
+                var nombreEvento = (dc.document.get("nombreEvento") as String?)
+                var fecha = (dc.document.get("fecha") as String?)
+                var hora = (dc.document.get("hora") as String?)
+                var ubicacion = (dc.document.get("ubicacion") as String?)
+                var emailAsistentes = (dc.document.get("emailAsistentes") as ArrayList<String>?)
+
+                evento = Evento(nombreEvento,fecha,hora,ubicacion,emailAsistentes)
+                Log.e("preuba1",evento.toString())
+            }
+        }
+
+        /*
         db.collection("${Constantes.collectionEvents}").document("${nombreEvento}").get().addOnSuccessListener {
 
 
             //Si encuentra el documento será satisfactorio este listener y entraremos en él.
-
             var nombreEvento = (it.get("nombreEvento") as String?)
             var fecha = (it.get("fecha") as String?)
             var hora = (it.get("hora") as String?)
@@ -106,11 +128,14 @@ class ListaAsistentesEventoActivity : AppCompatActivity() {
             var emailAsistentes = (it.get("emailAsistentes") as ArrayList<String>?)
 
             evento = Evento(nombreEvento,fecha,hora,ubicacion,emailAsistentes)
+            Log.e("preuba1",evento.toString())
 
         }.addOnFailureListener{
             Toast.makeText(this, "Algo ha ido mal al recuperar", Toast.LENGTH_SHORT).show()
 
         }
+
+         */
     }
 
 
@@ -119,14 +144,11 @@ class ListaAsistentesEventoActivity : AppCompatActivity() {
         for(dc: DocumentChange in datos?.documentChanges!!){
             if (dc.type == DocumentChange.Type.ADDED){
 
-
                 var al = User(
                     dc.document.get("email").toString(),
                     dc.document.get("userName").toString(),
                     dc.document.get("phone").toString().toInt()
                 )
-                //Log.e(TAG, al.toString())
-                //usuarios.add(al)
                 check_asistentes(al)
             }
         }

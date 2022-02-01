@@ -1,5 +1,6 @@
 package com.chema.siemprellegastarde.rv
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.chema.siemprellegastarde.R
+import com.chema.siemprellegastarde.activities.ListaAsistentesEventoActivity
+import com.chema.siemprellegastarde.activities.MapsNewEventoActivity
 import com.chema.siemprellegastarde.model.Evento
 import com.chema.siemprellegastarde.model.User
 import com.chema.siemprellegastarde.utils.Constantes
@@ -42,8 +45,10 @@ class AdapterRvEventos (
 
 
         holder.itemView.setOnClickListener {
-
-            Toast.makeText(context, "ABRIR ACTIVITY LISTA ASISTENTES", Toast.LENGTH_SHORT).show()
+            val asistIntent = Intent(context, MapsNewEventoActivity::class.java).apply {
+                putExtra("ubicacion_evento",evento.ubicacion.toString())
+            }
+            context.startActivity(asistIntent)
         }
 
         //ELIMINAR EVENTO

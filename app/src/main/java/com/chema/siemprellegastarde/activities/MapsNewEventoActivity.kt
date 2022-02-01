@@ -5,6 +5,8 @@ import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
@@ -27,7 +29,8 @@ class MapsNewEventoActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsNewEventoBinding
     private val LOCATION_REQUEST_CODE: Int = 0
-    private var ubicacion_seleccionada: LatLng? = null
+    //private var ubicacion_seleccionada: LatLng? = null
+    private var ubicacion_evento: String? = null
     private var tituloEvento: String = ""
 
 
@@ -36,6 +39,10 @@ class MapsNewEventoActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap
 
         binding = ActivityMapsNewEventoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val bundle:Bundle? = intent.extras
+        ubicacion_evento = (bundle?.getString("ubicacion_evento"))
+
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -61,13 +68,18 @@ class MapsNewEventoActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap
         mMap.setOnMarkerClickListener(this)
         enableMyLocation()
 
-        /*
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+    }
 
-         */
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.my_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.modo_normal -> mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     /**
