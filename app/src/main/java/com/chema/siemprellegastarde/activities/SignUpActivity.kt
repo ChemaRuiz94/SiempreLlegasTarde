@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import com.chema.siemprellegastarde.utils.ProviderType
 import com.chema.siemprellegastarde.R
 import com.chema.siemprellegastarde.utils.Constantes
+import com.chema.siemprellegastarde.utils.VariblesComunes
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -103,6 +104,7 @@ class SignUpActivity : AppCompatActivity() {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(ed_txt_email.text.toString(),ed_txt_pwd.text.toString()).addOnCompleteListener {
             if (it.isSuccessful){
                 reg_user() //guardamos el usuario
+                VariblesComunes.emailUsuarioActual = (it.result?.user?.email?:"")
                 irHome(it.result?.user?.email?:"") //vamos a home
             } else {
                 showAlert()

@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.chema.siemprellegastarde.R
 import com.chema.siemprellegastarde.utils.ProviderType
+import com.chema.siemprellegastarde.utils.VariblesComunes
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -63,8 +64,8 @@ class LoginActivity : AppCompatActivity() {
 
             FirebaseAuth.getInstance().signInWithEmailAndPassword(edEmail.text.toString(),edPass.text.toString()).addOnCompleteListener {
                 if (it.isSuccessful){
+                    VariblesComunes.emailUsuarioActual = (it.result?.user?.email?:"")
                     irHome(it.result?.user?.email?:"")  //Esto de los interrogantes es por si está vacío el email.
-
                 } else {
                     showAlert()
                 }
@@ -104,6 +105,7 @@ class LoginActivity : AppCompatActivity() {
                     val credential: AuthCredential = GoogleAuthProvider.getCredential(account.idToken, null)
                     FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
                         if (it.isSuccessful){
+                            VariblesComunes.emailUsuarioActual = account.email?:""
                             irHome(account.email?:"")  //Esto de los interrogantes es por si está vacío el email.
                         } else {
                             showAlert()
