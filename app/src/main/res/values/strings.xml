@@ -17,4 +17,13 @@
     <string name="almacenado">Almacenado</string>
     <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="edicionEventos">Edicion de Eventos</string>
+    <string name="asistentesEvento">Asistentes al evento</string>
+    <string name="consultaEventos">Consulta de Eventos</string>
+    <string name="asiste">Asiste</string>
+    <string name="noAsiste">No asiste</string>
+    <string name="nuevoEvento">Nuevo Evento</string>
+    <string name="fecha">Fecha</string>
+    <string name="title_activity_maps_new_evento">MapsNewEventoActivity</string>
+    <string name="title_activity_maps_edicion_event">MapsEdicionEventActivity</string>
 </resources>

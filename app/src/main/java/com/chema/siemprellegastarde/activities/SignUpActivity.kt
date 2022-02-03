@@ -8,8 +8,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.chema.siemprellegastarde.ProviderType
+import com.chema.siemprellegastarde.utils.ProviderType
 import com.chema.siemprellegastarde.R
+import com.chema.siemprellegastarde.utils.Constantes
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -124,7 +125,7 @@ class SignUpActivity : AppCompatActivity() {
             "phone" to ed_txt_movil.text.toString().trim()
         )
 
-        db.collection("users")
+        db.collection("${Constantes.collectionUser}")
             .document(email) //Será la clave del documento.
             .set(user).addOnSuccessListener {
                 Toast.makeText(this, getString(R.string.almacenado), Toast.LENGTH_SHORT).show()

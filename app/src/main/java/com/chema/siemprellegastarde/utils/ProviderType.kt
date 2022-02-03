@@ -1,4 +1,4 @@
-package com.chema.siemprellegastarde
+package com.chema.siemprellegastarde.utils
 
 enum class ProviderType {
     BASIC, GOOGLE
