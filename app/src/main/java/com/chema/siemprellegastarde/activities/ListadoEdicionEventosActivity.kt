@@ -56,6 +56,21 @@ class ListadoEdicionEventosActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        runBlocking {
+            val job : Job = launch(context = Dispatchers.Default) {
+                val datos : QuerySnapshot = getDataFromFireStore() as QuerySnapshot //Obtenermos la colección
+                obtenerDatos(datos as QuerySnapshot?)  //'Destripamos' la colección y la metemos en nuestro ArrayList
+            }
+            //Con este método el hilo principal de onCreate se espera a que la función acabe y devuelva la colección con los datos.
+            job.join() //Esperamos a que el método acabe: https://dzone.com/articles/waiting-for-coroutines
+        }
+
+        cargarRV()
+    }
+
     private fun cargarRV(){
 
         rv = findViewById(R.id.rv_eventos)
