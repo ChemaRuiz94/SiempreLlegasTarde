@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.chema.siemprellegastarde.R
 import com.chema.siemprellegastarde.activities.ListaAsistentesEventoActivity
+import com.chema.siemprellegastarde.activities.MapsEdicionEventoActivity
 import com.chema.siemprellegastarde.activities.MapsNewEventoActivity
 import com.chema.siemprellegastarde.model.Evento
 import com.chema.siemprellegastarde.model.User
@@ -45,10 +46,18 @@ class AdapterRvEventos (
 
 
         holder.itemView.setOnClickListener {
+            /*
             val asistIntent = Intent(context, MapsNewEventoActivity::class.java).apply {
                 putExtra("ubicacion_evento",evento.ubicacion.toString())
             }
             context.startActivity(asistIntent)
+             */
+            val eventoIntent = Intent(context, MapsEdicionEventoActivity::class.java).apply {
+                putExtra("nombre_evento",evento.nombreEvento.toString())
+                putExtra("lat_ubicacion_evento",evento.latUbi.toString())
+                putExtra("lon_ubicacion_evento",evento.lonUbi.toString())
+            }
+            context.startActivity(eventoIntent)
         }
 
         //ELIMINAR EVENTO

@@ -5,8 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import com.chema.siemprellegastarde.R
-import com.chema.siemprellegastarde.utils.Constantes
-import com.chema.siemprellegastarde.utils.VaraiblesComunes
+import com.chema.siemprellegastarde.utils.VariblesComunes
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -23,7 +22,7 @@ class HomeActivity : AppCompatActivity() {
 
         val bundle:Bundle? = intent.extras
         email = (bundle?.getString("email"))
-        VaraiblesComunes.emailUsuarioActual = email
+        VariblesComunes.emailUsuarioActual = email
 
         usuario_actual.text = email
 

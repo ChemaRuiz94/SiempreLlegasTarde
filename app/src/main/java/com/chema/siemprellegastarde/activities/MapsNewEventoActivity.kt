@@ -13,7 +13,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.chema.siemprellegastarde.R
 
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -21,7 +20,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 //import com.chema.siemprellegastarde.activities.databinding.ActivityMapsNewEventoBinding
 import com.chema.siemprellegastarde.databinding.ActivityMapsNewEventoBinding
-import com.chema.siemprellegastarde.utils.VaraiblesComunes
+import com.chema.siemprellegastarde.utils.VariblesComunes
 import com.google.android.gms.maps.model.Marker
 
 class MapsNewEventoActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnMarkerClickListener{
@@ -134,7 +133,10 @@ class MapsNewEventoActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap
                 p0.remove()
                 view.dismiss()
             }.setNegativeButton("Seleccionar Ubicacion") { view, _ ->
-                VaraiblesComunes.marcadorActual = p0.position
+                //guardamos la posi del marcador para usarla en otra activity
+                VariblesComunes.marcadorActual = p0.position
+                VariblesComunes.latEventoActual = p0.position.latitude.toString()
+                VariblesComunes.lonEventoActual = p0.position.longitude.toString()
                 finish()
                 view.dismiss()
             }.create().show()

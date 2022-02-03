@@ -79,7 +79,7 @@ class ListaAsistentesEventoActivity : AppCompatActivity() {
 
     suspend fun getDataFromFireStore()  : QuerySnapshot? {
         return try{
-            val data = db.collection("${Constantes.collectionEvents}")
+            val data = db.collection("${Constantes.collectionEvents3}")
                 .whereEqualTo("nombreEvento","${nombreEvento}")
                 .get()
                 .await()
@@ -109,9 +109,11 @@ class ListaAsistentesEventoActivity : AppCompatActivity() {
                 var fecha = (dc.document.get("fecha") as String?)
                 var hora = (dc.document.get("hora") as String?)
                 var ubicacion = (dc.document.get("ubicacion") as String?)
+                var latUbi = (dc.document.get("latUbi") as String?)
+                var lonUbi = (dc.document.get("lonUbi") as String?)
                 var emailAsistentes = (dc.document.get("emailAsistentes") as ArrayList<String>?)
 
-                evento = Evento(nombreEvento,fecha,hora,ubicacion,emailAsistentes)
+                evento = Evento(nombreEvento,fecha,hora,ubicacion,latUbi,lonUbi,emailAsistentes)
                 Log.e("preuba1",evento.toString())
             }
         }

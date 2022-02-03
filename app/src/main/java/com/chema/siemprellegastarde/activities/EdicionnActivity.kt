@@ -3,7 +3,6 @@ package com.chema.siemprellegastarde.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -18,14 +17,12 @@ import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_edicionn.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
-import java.sql.Timestamp
 
 class EdicionnActivity : AppCompatActivity() {
 
@@ -65,7 +62,7 @@ class EdicionnActivity : AppCompatActivity() {
 
 
         //var user = User("che@che.com","Chema",666745101)
-        VaraiblesComunes.usuariosEventoActual.clear()
+        VariblesComunes.usuariosEventoActual.clear()
         //VaraiblesComunes.usuariosEventoActual.add("che@che.com")
 
 
@@ -162,13 +159,24 @@ class EdicionnActivity : AppCompatActivity() {
     }
 
 
+    /*
     public fun cambiar_UbicacionActual_Desde_Fuera(ubi : LatLng){
         ubicacionActual = ubi
     }
 
+     */
+
   private fun cambiar_UbicacionActual(){
+      /*
       if(ubicacionActual != VaraiblesComunes.marcadorActual){
           ubicacionActual = VaraiblesComunes.marcadorActual
+          ed_txt_ubicacion.setText("${ubicacionActual}")
+      }
+
+       */
+
+      if(VariblesComunes.latEventoActual != null && VariblesComunes.lonEventoActual != null){
+          ubicacionActual = LatLng(VariblesComunes.latEventoActual.toString().toDouble(),VariblesComunes.lonEventoActual.toString().toDouble())
           ed_txt_ubicacion.setText("${ubicacionActual}")
       }
   }
@@ -181,14 +189,16 @@ class EdicionnActivity : AppCompatActivity() {
             "fecha" to ed_txt_fecha.text.toString().trim(),
             "hora" to ed_txt_hora.text.toString().trim(),
             "ubicacion" to ed_txt_ubicacion.text.toString().trim(),
-            "emailAsistentes" to VaraiblesComunes.usuariosEventoActual
+            "latUbi" to VariblesComunes.latEventoActual,
+            "lonUbi" to VariblesComunes.lonEventoActual,
+            "emailAsistentes" to VariblesComunes.usuariosEventoActual
         )
         var id_evento = "${ed_txt_titulo_evento.text.toString()}"
         //var time = Timestamp(System.currentTimeMillis())
         //val rnds = (0..100).random()
         //id_evento += "_id${time}${rnds} "
 
-        db.collection("${Constantes.collectionEvents}")
+        db.collection("${Constantes.collectionEvents3}")
             .document(id_evento) //Será la clave del documento.
             .set(evento).addOnSuccessListener {
                 Toast.makeText(this, getString(R.string.almacenado), Toast.LENGTH_SHORT).show()
@@ -220,7 +230,7 @@ class EdicionnActivity : AppCompatActivity() {
             Toast.makeText(this,"Seleccione una ubicacion", Toast.LENGTH_SHORT).show()
         }
 
-        if(VaraiblesComunes.usuariosEventoActual.size<0){
+        if(VariblesComunes.usuariosEventoActual.size<0){
             correcto = false
             Toast.makeText(this,"Añade por lo menos un invitado", Toast.LENGTH_SHORT).show()
         }

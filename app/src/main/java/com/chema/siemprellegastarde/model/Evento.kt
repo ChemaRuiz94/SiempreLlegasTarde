@@ -7,4 +7,6 @@ data class Evento(
     var fecha: String?,
     var hora: String?,
     var ubicacion: String?,
+    var latUbi: String?,
+    var lonUbi: String?,
     var emailAsistentes: ArrayList<String>?) : Serializable

@@ -5,12 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.chema.siemprellegastarde.R
 import com.chema.siemprellegastarde.model.User
-import com.chema.siemprellegastarde.utils.VaraiblesComunes
+import com.chema.siemprellegastarde.utils.VariblesComunes
 
 class AdapterRvUsers (
     private val context: AppCompatActivity,
@@ -47,11 +46,11 @@ class AdapterRvUsers (
         if (holder.txt_asiste.text.equals("Asiste")){
             holder.img_correcto.setImageResource(R.drawable.ic_baseline_check_24_no)
             holder.txt_asiste.text = "No asiste"
-            VaraiblesComunes.usuariosEventoActual.remove(usuarios[position].email)
+            VariblesComunes.usuariosEventoActual.remove(usuarios[position].email)
         }else{
             holder.img_correcto.setImageResource(R.drawable.ic_baseline_check_24_yes)
             holder.txt_asiste.text = "Asiste"
-            VaraiblesComunes.usuariosEventoActual.add(usuarios[position].email)
+            VariblesComunes.usuariosEventoActual.add(usuarios[position].email)
 
         }
     }
