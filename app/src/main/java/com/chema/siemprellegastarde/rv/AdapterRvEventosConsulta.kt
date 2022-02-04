@@ -41,6 +41,7 @@ class AdapterRvEventosConsulta (
         var evento: Evento = eventos[position]
         holder.nombre_evento.text = evento.nombreEvento
         holder.fecha_evento.text = evento.fecha
+        holder.hora_evento.text = evento.hora
 
 
 
@@ -60,6 +61,7 @@ class AdapterRvEventosConsulta (
 
         val nombre_evento = view.findViewById<TextView>(R.id.nombreEvento_item)
         val fecha_evento = view.findViewById<TextView>(R.id.fechaEvento_item)
+        val hora_evento = view.findViewById<TextView>(R.id.txt_hora_evento)
 
     }
 }

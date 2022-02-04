@@ -21,7 +21,15 @@ import com.google.android.gms.maps.model.MarkerOptions
 //import com.chema.siemprellegastarde.activities.databinding.ActivityMapsEdicionEventoBinding
 import com.chema.siemprellegastarde.activities.MapsEdicionEventoActivity
 import com.chema.siemprellegastarde.databinding.ActivityMapsEdicionEventoBinding
+import com.chema.siemprellegastarde.model.Evento
+import com.chema.siemprellegastarde.utils.Constantes
+import com.chema.siemprellegastarde.utils.VariblesComunes
+import com.google.android.gms.maps.model.Circle
 import com.google.android.gms.maps.model.CircleOptions
+import com.google.firebase.firestore.FirebaseFirestore
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 class MapsEdicionEventoActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
 
@@ -31,6 +39,7 @@ class MapsEdicionEventoActivity : AppCompatActivity(), OnMapReadyCallback, Googl
     private var nombre_evento : String? = null
     private var lat_ubicacion_evento : String? = null
     private var lon_ubicacion_evento : String? = null
+    private lateinit var circulo : Circle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -117,9 +126,10 @@ class MapsEdicionEventoActivity : AppCompatActivity(), OnMapReadyCallback, Googl
     fun pintarCirculoCentro(){
         //val markerCIFP = LatLng(38.69332,-4.10860)
         val evento = LatLng(lat_ubicacion_evento.toString().toDouble(), lon_ubicacion_evento.toString().toDouble())
-        mMap.addCircle(CircleOptions().run{
+        circulo = mMap.addCircle(CircleOptions().run{
             center(evento)
-            radius(9.0)
+            //radius(9.0)
+            radius(20.0)
             strokeColor(Color.BLUE)
             fillColor(Color.TRANSPARENT)
         })
@@ -131,8 +141,85 @@ class MapsEdicionEventoActivity : AppCompatActivity(), OnMapReadyCallback, Googl
     }
 
     override fun onMyLocationClick(p0: Location) {
-        Toast.makeText(this, "Estás en ${p0.latitude}, ${p0.longitude}", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "Estás en ${p0.latitude}, ${p0.longitude}", Toast.LENGTH_SHORT).show()
+
+        check_llegadaUsarioEvento(p0)
+        /*
+        if(chekc_usuario_inviatio()){
+            check_llegadaUsarioEvento(p0)
+        }else{
+            Toast.makeText(this,"NO ESTAS INVITADO ACOPLAO!", Toast.LENGTH_SHORT).show()
+        }
+
+         */
     }
 
+    private fun chekc_usuario_inviatio():Boolean{
+        var correcto = false
+        if(VariblesComunes.eventoActual!!.emailAsistentes!!.contains(VariblesComunes.emailUsuarioActual.toString())){
+            correcto = true
+        }
+        return correcto
+    }
 
+    private fun check_llegadaUsarioEvento(p0: Location){
+        val results = FloatArray(1)
+
+        Location.distanceBetween(
+            circulo.center.latitude,
+            circulo.center.longitude,
+            lat_ubicacion_evento.toString().toDouble(),
+            lon_ubicacion_evento.toString().toDouble(),
+            results
+        )
+        val distanceInMeters = results[0]
+        //val isWithin1km = distanceInMeters < 1000
+        val isWithin20m = distanceInMeters < 20
+
+        if(isWithin20m){
+            if(VariblesComunes.emailUsuarioActual.toString() in VariblesComunes.eventoActual!!.emailAsistentesLlegada!!.toString()) {
+                Toast.makeText(this,"Ya has confirmado tu llegada al evento",Toast.LENGTH_SHORT).show()
+            }else{
+                llegadaUsarioEvento()
+            }
+        }else{
+            Toast.makeText(this,"No estas en la ubicacion del evento",Toast.LENGTH_SHORT).show()
+        }
+        /*
+        if(p0.latitude == lat_ubicacion_evento.toString().toDouble() && p0.longitude == lon_ubicacion_evento.toString().toDouble()){
+            if(VariblesComunes.emailUsuarioActual.toString() in VariblesComunes.eventoActual!!.emailAsistentesLlegada!!.toString()) {
+                Toast.makeText(this,"Ya has confirmado tu llegada al evento",Toast.LENGTH_SHORT).show()
+            }else{
+                llegadaUsarioEvento()
+            }
+        }else {
+            Toast.makeText(this,"No estas en la ubicacion del evento",Toast.LENGTH_SHORT).show()
+        }
+
+
+         */
+
+
+    }
+    private fun llegadaUsarioEvento(){
+        var currentDateTime= LocalDateTime.now()
+        var time= currentDateTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)).removeSuffix(" AM").removeSuffix(" PM")
+
+        var eventoAntiguo : Evento? = VariblesComunes.eventoActual
+        var eventoActualizdo : Evento = eventoAntiguo!!
+
+        eventoActualizdo.emailAsistentesLlegada!!.add(VariblesComunes.emailUsuarioActual.toString())
+        eventoActualizdo.asistentesLlegadaHora!!.add(time.toString())
+
+
+        val db = FirebaseFirestore.getInstance()
+        db.collection("${Constantes.collectionEvents4}")
+            .document("${nombre_evento}") //Será la clave del documento.
+            .set(eventoActualizdo).addOnSuccessListener {
+                Toast.makeText(this, "Has llegado al evento", Toast.LENGTH_SHORT).show()
+                finish()
+            }.addOnFailureListener{
+                Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
+            }
+    }
 }
