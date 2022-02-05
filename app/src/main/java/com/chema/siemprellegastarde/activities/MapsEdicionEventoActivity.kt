@@ -143,15 +143,16 @@ class MapsEdicionEventoActivity : AppCompatActivity(), OnMapReadyCallback, Googl
     override fun onMyLocationClick(p0: Location) {
         //Toast.makeText(this, "Estás en ${p0.latitude}, ${p0.longitude}", Toast.LENGTH_SHORT).show()
 
-        check_llegadaUsarioEvento(p0)
-        /*
+        //check_llegadaUsarioEvento(p0)
+
+
         if(chekc_usuario_inviatio()){
             check_llegadaUsarioEvento(p0)
         }else{
             Toast.makeText(this,"NO ESTAS INVITADO ACOPLAO!", Toast.LENGTH_SHORT).show()
         }
 
-         */
+
     }
 
     private fun chekc_usuario_inviatio():Boolean{

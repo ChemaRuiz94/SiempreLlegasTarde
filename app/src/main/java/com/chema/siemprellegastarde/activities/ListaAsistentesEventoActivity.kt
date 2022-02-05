@@ -12,6 +12,7 @@ import com.chema.siemprellegastarde.model.User
 import com.chema.siemprellegastarde.rv.AdapterRvUsers
 import com.chema.siemprellegastarde.rv.AdapterRvUsersLlegada
 import com.chema.siemprellegastarde.utils.Constantes
+import com.chema.siemprellegastarde.utils.VariblesComunes
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
@@ -118,6 +119,7 @@ class ListaAsistentesEventoActivity : AppCompatActivity() {
 
                 evento = Evento(nombreEvento,fecha,hora,ubicacion,latUbi,lonUbi,emailAsistentes,emailAsistentesLlegada,asistentesLlegadaHora)
                 Log.e("preuba1",evento.toString())
+                //VariblesComunes.eventoActual = evento
             }
         }
 

@@ -17,6 +17,7 @@ import com.chema.siemprellegastarde.activities.ListaAsistentesEventoActivity
 import com.chema.siemprellegastarde.model.Evento
 import com.chema.siemprellegastarde.model.User
 import com.chema.siemprellegastarde.utils.Constantes
+import com.chema.siemprellegastarde.utils.VariblesComunes
 import com.google.firebase.firestore.FirebaseFirestore
 
 class AdapterRvEventosConsulta (
@@ -50,6 +51,7 @@ class AdapterRvEventosConsulta (
 
             val asistIntent = Intent(context, ListaAsistentesEventoActivity::class.java).apply {
                 putExtra("nombreEvento",evento.nombreEvento)
+                VariblesComunes.eventoActual = evento
             }
             context.startActivity(asistIntent)
         }
