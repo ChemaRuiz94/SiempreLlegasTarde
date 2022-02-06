@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "658846832937",
+    "project_id": "siemprellegastarde-a5308",
+    "storage_bucket": "siemprellegastarde-a5308.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:658846832937:android:f4e213528e81deb5fbff38",
+        "android_client_info": {
+          "package_name": "com.chema.siemprellegastarde"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "658846832937-ecmnh5vhsr1rj9ntjf236namo3f2ksme.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chema.siemprellegastarde",
+            "certificate_hash": "b100df053331f83a535ef7f06c83482344d19567"
+          }
+        },
+        {
+          "client_id": "658846832937-ma12rpe4l4idqh6rc747cmo52sp1ua12.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhfXl0iz1rwsh2jvHJ8PkilQn1-E2s9ow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "658846832937-ma12rpe4l4idqh6rc747cmo52sp1ua12.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

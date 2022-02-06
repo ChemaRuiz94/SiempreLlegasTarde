@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">SiempreLlegasTarde</string>
+    <string name="request_id_token">658846832937-ma12rpe4l4idqh6rc747cmo52sp1ua12.apps.googleusercontent.com</string>
+    <string name="email">Email</string>
+    <string name="UserName">UaserName</string>
+    <string name="Password">Password</string>
+    <string name="Telefono">Teléfono</string>
+    <string name="Login">Login</string>
+    <string name="SignUp">SignUp</string>
+    <string name="LoginGoogle">Login con Google</string>
+    <string name="cerrarSesion">Cerrar Sesion</string>
+    <string name="camposVacios">Hay campos que están vacios</string>
+    <string name="movilIncorrecto">El número de teléfono es incorrecto</string>
+    <string name="ERROR">ERROR</string>
+    <string name="ocurridoError">Ha ocurrido un error</string>
+    <string name="ocurridoErrorAutenticacion">Se ha producido un error autenticando al usuairo</string>
+    <string name="almacenado">Almacenado</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="edicionEventos">Edicion de Eventos</string>
+    <string name="asistentesEvento">Asistentes al evento</string>
+    <string name="consultaEventos">Consulta de Eventos</string>
+    <string name="asiste">Asiste</string>
+    <string name="noAsiste">No asiste</string>
+    <string name="nuevoEvento">Nuevo Evento</string>
+    <string name="fecha">Fecha</string>
+    <string name="title_activity_maps_new_evento">MapsNewEventoActivity</string>
+    <string name="title_activity_maps_edicion_event">MapsEdicionEventActivity</string>
 </resources>

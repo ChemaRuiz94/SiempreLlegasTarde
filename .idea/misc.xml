@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Chema/ProyectosAndroid/SiempreLlegasTarde/SiempreLlegasTarde/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
+        <entry key="..\:/Users/Chema/ProyectosAndroid/SiempreLlegasTarde/SiempreLlegasTarde/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/Chema/ProyectosAndroid/SiempreLlegasTarde/SiempreLlegasTarde/app/src/main/res/layout/activity_edicion.xml" value="0.6" />
+        <entry key="..\:/Users/Chema/ProyectosAndroid/SiempreLlegasTarde/SiempreLlegasTarde/app/src/main/res/layout/activity_edicionn.xml" value="0.264" />
+        <entry key="..\:/Users/Chema/ProyectosAndroid/SiempreLlegasTarde/SiempreLlegasTarde/app/src/main/res/layout/activity_home.xml" value="0.264" />
+        <entry key="..\:/Users/Chema/ProyectosAndroid/SiempreLlegasTarde/SiempreLlegasTarde/app/src/main/res/layout/activity_lista_asistentes_evento.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Chema/ProyectosAndroid/SiempreLlegasTarde/SiempreLlegasTarde/app/src/main/res/layout/activity_lista_eventos_consulta.xml" value="0.22418478260869565" />
+        <entry key="..\:/Users/Chema/ProyectosAndroid/SiempreLlegasTarde/SiempreLlegasTarde/app/src/main/res/layout/activity_listado_edicion_eventos.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/Chema/ProyectosAndroid/SiempreLlegasTarde/SiempreLlegasTarde/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Users/Chema/ProyectosAndroid/SiempreLlegasTarde/SiempreLlegasTarde/app/src/main/res/layout/activity_maps_edicion_evento.xml" value="0.21739130434782608" />
+        <entry key="..\:/Users/Chema/ProyectosAndroid/SiempreLlegasTarde/SiempreLlegasTarde/app/src/main/res/layout/activity_maps_new_evento.xml" value="0.2418478260869565" />
+        <entry key="..\:/Users/Chema/ProyectosAndroid/SiempreLlegasTarde/SiempreLlegasTarde/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
+        <entry key="..\:/Users/Chema/ProyectosAndroid/SiempreLlegasTarde/SiempreLlegasTarde/app/src/main/res/layout/item_event_layout.xml" value="0.536" />
+        <entry key="..\:/Users/Chema/ProyectosAndroid/SiempreLlegasTarde/SiempreLlegasTarde/app/src/main/res/layout/item_user_layout.xml" value="0.264" />
+        <entry key="..\:/Users/Chema/ProyectosAndroid/SiempreLlegasTarde/SiempreLlegasTarde/app/src/main/res/layout/item_user_llegada_evento_layout.xml" value="0.2441123188405797" />
+        <entry key="..\:/Users/Chema/ProyectosAndroid/SiempreLlegasTarde/SiempreLlegasTarde/app/src/main/res/menu/my_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Chema/ProyectosAndroid/SiempreLlegasTarde/SiempreLlegasTarde/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2703125" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
