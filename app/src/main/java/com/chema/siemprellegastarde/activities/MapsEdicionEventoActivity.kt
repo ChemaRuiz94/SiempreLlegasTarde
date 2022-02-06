@@ -166,9 +166,10 @@ class MapsEdicionEventoActivity : AppCompatActivity(), OnMapReadyCallback, Googl
     private fun check_llegadaUsarioEvento(p0: Location){
         val results = FloatArray(1)
 
+
         Location.distanceBetween(
-            circulo.center.latitude,
-            circulo.center.longitude,
+            p0.latitude,
+            p0.longitude,
             lat_ubicacion_evento.toString().toDouble(),
             lon_ubicacion_evento.toString().toDouble(),
             results
@@ -177,7 +178,7 @@ class MapsEdicionEventoActivity : AppCompatActivity(), OnMapReadyCallback, Googl
         //val isWithin1km = distanceInMeters < 1000
         val isWithin20m = distanceInMeters < 20
 
-        if(isWithin20m){
+        if(distanceInMeters < 20){
             if(VariblesComunes.emailUsuarioActual.toString() in VariblesComunes.eventoActual!!.emailAsistentesLlegada!!.toString()) {
                 Toast.makeText(this,"Ya has confirmado tu llegada al evento",Toast.LENGTH_SHORT).show()
             }else{
