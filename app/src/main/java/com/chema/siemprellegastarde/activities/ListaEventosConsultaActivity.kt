@@ -55,7 +55,7 @@ class ListaEventosConsultaActivity : AppCompatActivity() {
 
     suspend fun getDataFromFireStore()  : QuerySnapshot? {
         return try{
-            val data = db.collection("${Constantes.collectionEvents3}")
+            val data = db.collection("${Constantes.collectionEvents4}")
                 .get()
                 .await()
             data
@@ -81,7 +81,9 @@ class ListaEventosConsultaActivity : AppCompatActivity() {
                     dc.document.get("ubicacion").toString(),
                     dc.document.get("latUbi").toString(),
                     dc.document.get("lonUbi").toString(),
-                    dc.document.get("emailAsistentes") as ArrayList<String>
+                    dc.document.get("emailAsistentes") as ArrayList<String>,
+                    dc.document.get("emailAsistentesLlegada") as ArrayList<String>,
+                    dc.document.get("asistentesLlegadaHora") as ArrayList<String>,
                 )
                 //Log.e(TAG, al.toString())
                 eventos.add(al)

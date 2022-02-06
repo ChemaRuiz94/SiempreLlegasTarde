@@ -184,21 +184,26 @@ class EdicionnActivity : AppCompatActivity() {
 
 
     private fun guardar_evento(){
+        var userLlegados = ArrayList<String>()
+        var horaUserLlegados = ArrayList<String>()
         var evento = hashMapOf(
+
             "nombreEvento" to ed_txt_titulo_evento.text.toString(),
             "fecha" to ed_txt_fecha.text.toString().trim(),
             "hora" to ed_txt_hora.text.toString().trim(),
             "ubicacion" to ed_txt_ubicacion.text.toString().trim(),
             "latUbi" to VariblesComunes.latEventoActual,
             "lonUbi" to VariblesComunes.lonEventoActual,
-            "emailAsistentes" to VariblesComunes.usuariosEventoActual
+            "emailAsistentes" to VariblesComunes.usuariosEventoActual,
+            "emailAsistentesLlegada" to userLlegados,
+            "asistentesLlegadaHora" to horaUserLlegados,
         )
         var id_evento = "${ed_txt_titulo_evento.text.toString()}"
         //var time = Timestamp(System.currentTimeMillis())
         //val rnds = (0..100).random()
         //id_evento += "_id${time}${rnds} "
 
-        db.collection("${Constantes.collectionEvents3}")
+        db.collection("${Constantes.collectionEvents4}")
             .document(id_evento) //Será la clave del documento.
             .set(evento).addOnSuccessListener {
                 Toast.makeText(this, getString(R.string.almacenado), Toast.LENGTH_SHORT).show()

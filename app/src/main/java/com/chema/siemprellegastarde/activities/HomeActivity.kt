@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import com.chema.siemprellegastarde.R
 import com.chema.siemprellegastarde.utils.VariblesComunes
+import com.google.errorprone.annotations.Var
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -24,7 +25,8 @@ class HomeActivity : AppCompatActivity() {
         email = (bundle?.getString("email"))
         VariblesComunes.emailUsuarioActual = email
 
-        usuario_actual.text = email
+        //usuario_actual.text = email
+        usuario_actual.text = VariblesComunes.emailUsuarioActual
 
         btn_edicion.setOnClickListener{
             val editIntent = Intent(this, ListadoEdicionEventosActivity::class.java)

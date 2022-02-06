@@ -10,7 +10,9 @@ import com.chema.siemprellegastarde.R
 import com.chema.siemprellegastarde.model.Evento
 import com.chema.siemprellegastarde.model.User
 import com.chema.siemprellegastarde.rv.AdapterRvUsers
+import com.chema.siemprellegastarde.rv.AdapterRvUsersLlegada
 import com.chema.siemprellegastarde.utils.Constantes
+import com.chema.siemprellegastarde.utils.VariblesComunes
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
@@ -28,7 +30,7 @@ class ListaAsistentesEventoActivity : AppCompatActivity() {
 
     private lateinit var rv : RecyclerView
     var usuarios : ArrayList<User> = ArrayList<User>()
-    private lateinit var miAdapter: AdapterRvUsers
+    private lateinit var miAdapter: AdapterRvUsersLlegada
     private var nombreEvento : String? = null
     private var evento : Evento? = null
 
@@ -72,14 +74,14 @@ class ListaAsistentesEventoActivity : AppCompatActivity() {
         rv = findViewById(R.id.rv_asistentes_evento)
         rv.setHasFixedSize(true)
         rv.layoutManager = LinearLayoutManager(this)
-        miAdapter = AdapterRvUsers(this, usuarios)
+        miAdapter = AdapterRvUsersLlegada(this, usuarios, evento!!)
         rv.adapter = miAdapter
 
     }
 
     suspend fun getDataFromFireStore()  : QuerySnapshot? {
         return try{
-            val data = db.collection("${Constantes.collectionEvents3}")
+            val data = db.collection("${Constantes.collectionEvents4}")
                 .whereEqualTo("nombreEvento","${nombreEvento}")
                 .get()
                 .await()
@@ -112,9 +114,12 @@ class ListaAsistentesEventoActivity : AppCompatActivity() {
                 var latUbi = (dc.document.get("latUbi") as String?)
                 var lonUbi = (dc.document.get("lonUbi") as String?)
                 var emailAsistentes = (dc.document.get("emailAsistentes") as ArrayList<String>?)
+                var emailAsistentesLlegada = (dc.document.get("emailAsistentesLlegada") as ArrayList<String>?)
+                var asistentesLlegadaHora = (dc.document.get("asistentesLlegadaHora") as ArrayList<String>?)
 
-                evento = Evento(nombreEvento,fecha,hora,ubicacion,latUbi,lonUbi,emailAsistentes)
+                evento = Evento(nombreEvento,fecha,hora,ubicacion,latUbi,lonUbi,emailAsistentes,emailAsistentesLlegada,asistentesLlegadaHora)
                 Log.e("preuba1",evento.toString())
+                //VariblesComunes.eventoActual = evento
             }
         }
 
