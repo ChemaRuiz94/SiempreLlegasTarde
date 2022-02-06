@@ -41,6 +41,7 @@ class MapsEdicionEventoActivity : AppCompatActivity(), OnMapReadyCallback, Googl
     private var lon_ubicacion_evento : String? = null
     private lateinit var circulo : Circle
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

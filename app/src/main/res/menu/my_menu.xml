@@ -5,4 +5,7 @@
     <item
         android:id="@+id/modo_normal"
         android:title="MODO NORMAL" />
+    <item
+        android:id="@+id/modo_hybrid"
+        android:title="MODO HIBRIDO" />
 </menu>
